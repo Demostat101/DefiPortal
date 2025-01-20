@@ -10,7 +10,7 @@
     <div class=" flex gap-3 place-items-center">
       <div class=" flex flex-col gap-[1.5px]">
        <div class="w-full min-w-[10rem] max-w-[17rem] text-nowrap bg-white">
-        <select class="bg-white text-[#666666] text-sm focus:outline-none outline-none w-full " name="" id="">
+        <select class="bg-white text-[#666666] text-sm focus:outline-none outline-none w-full md:w-[15rem]" name="" id="">
           <option value="">Select Language</option>
           <option value="">English</option>
           <option value="">French</option>
