@@ -70,6 +70,8 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside)
 })
+
+
 </script>
 
 <template>
@@ -85,7 +87,7 @@ onBeforeUnmount(() => {
         <form class="flex flex-col gap-8" action="">
           <div
             class="w-full flex flex-col gap-1 text-left border-r-0 border-l-0 transition duration-700 border-t-0 h-14 border-b-[2px] border-b-white"
-            :class="{ 'border-b-[#F3A424]': fullNameFocus, 'border-b-white': !fullNameFocus }"
+            :class="{ 'border-b-yellow-500': fullNameFocus, 'border-b-white': !fullNameFocus }"
           >
             <label class="text-[#454a4d] text-sm" for="fullname">Full Name</label>
             <input
@@ -100,7 +102,7 @@ onBeforeUnmount(() => {
           </div>
           <div
             class="w-full flex flex-col gap-1 text-left border-r-0 border-l-0 transition duration-700 border-t-0 h-14 border-b-[2px] border-b-white"
-            :class="{ 'border-b-[#F3A424]': emailFocus, 'border-b-white': !emailFocus }"
+            :class="{ 'border-b-yellow-500': emailFocus, 'border-b-white': !emailFocus }"
           >
             <label class="text-[#454a4d] text-sm" for="email">Email</label>
             <input
@@ -113,8 +115,9 @@ onBeforeUnmount(() => {
             />
           </div>
           <div
+
             class="w-full flex flex-col gap-1 text-left border-r-0 border-l-0 transition duration-700 border-t-0 h-14 border-b-[2px] border-b-white"
-            :class="{ 'border-b-[#F3A424]': walletFocus, 'border-b-white': !walletFocus }"
+
           >
             <label class="text-[#454a4d] text-sm" for="wallet">Select Wallet</label>
 
@@ -122,7 +125,7 @@ onBeforeUnmount(() => {
               <!-- Dropdown display (trigger) -->
               <div
                 class="bg-black text-white px-1 py-2 cursor-pointer border-b-white border-b-[2px]"
-                :class="{ 'border-b-[#F3A424]': walletFocus, 'border-b-white': !walletFocus }"
+                :class="{ 'border-b-yellow-500': walletFocus, 'border-b-white': !walletFocus }"
                 @click="toggleDropdown"
               >
                 <span class="flex items-center">
