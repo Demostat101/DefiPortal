@@ -1,77 +1,25 @@
-<script  setup lang="ts">
-import { ref } from 'vue';
+<script setup lang="ts">
+import { ref, defineEmits } from 'vue';
 
 // Reactive variable for selected language
-const selectedLanguage = ref<string>("");
+const selectedLanguage = ref<string>('en'); // Default language is English
 
-// Function to handle language change
-// const handleLanguageChange = () => {
-//   if (selectedLanguage.value) {
-//     // Retry to check iframe and select until it's available
+// Define the emit for the language change event
+const emit = defineEmits<{
+  (e: 'language-changed', language: string): void;
+}>();
 
-//     let attempts = 0;
-//     const maxAttempts = 10; // Max number of attempts
-//     const interval = 500; // Interval in ms to wait before retrying
+// Emit the selected language to the parent component
+const changeLanguage = () => {
+  emit('language-changed', selectedLanguage.value);
+};
 
-//     // Retry logic to wait for iframe to load
-//     const retryIframe = setInterval(() => {
-//       if (tryAccessIframe() || attempts >= maxAttempts) {
-//         clearInterval(retryIframe);
-//       }
-//       attempts++;
-//     }, interval);
-//     const tryAccessIframe = () => {
+console.log(changeLanguage);
+console.log(selectedLanguage.value);
 
 
-//       const iframe = document.querySelector("iframe.goog-te-menu-frame");
-//       console.log(selectedLanguage.value);
-
-//       console.log(iframe);
-
-
-
-//       if (iframe && iframe.contentWindow) {
-//         const iframeDocument = iframe.contentWindow.document;
-//         const select = iframeDocument.querySelector('select.goog-te-combo');
-
-//         if (select) {
-//           select.value = selectedLanguage.value;
-//           select.dispatchEvent(new Event('change')); // Trigger the change event
-//           return true;
-//         }
-//       }
-//       return false;
-//     };
-
-
-//   }
-// };
-
-// Load Google Translate widget when the component is mounted
-// import { onMounted } from 'vue';
-// onMounted(() => {
-//   // Manually trigger Google Translate script loading in App.vue
-//   const loadGoogleTranslateWidget = () => {
-//     const script = document.createElement('script');
-//     script.src = "https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
-//     script.async = true;
-//     document.head.appendChild(script);
-//   };
-
-//   loadGoogleTranslateWidget();
-// });
-
-// Initialize Google Translate when the script is loaded
-// window.googleTranslateElementInit = () => {
-//   console.log("Google Translate Initialized");
-//   new (window as any).google.translate.TranslateElement({
-//     pageLanguage: 'en',
-//     includedLanguages: 'en,fr,es', // You can modify the languages here
-//     layout: (window as any).google.translate.TranslateElement.InlineLayout.SIMPLE,
-//     autoDisplay: false
-//   }, 'google_translate_element');
-// };
 </script>
+
 
 <template>
   <div class="sticky bg-black top-0 z-20 p-4 flex justify-between place-items-center items-center border-b-[#F5A524] border-b-[1px]">
@@ -87,12 +35,15 @@ const selectedLanguage = ref<string>("");
           <select
             v-model="selectedLanguage"
             class="bg-white text-[#666666] text-sm focus:outline-none outline-none w-full md:w-[15rem]"
-   
+            @change="changeLanguage"
+
           >
             <option value="">Select Language</option>
             <option value="en">English</option>
             <option value="fr">French</option>
             <option value="es">Spanish</option>
+            <option value="de">German</option>
+            <option value="it">Italian</option>
           </select>
         </div>
 

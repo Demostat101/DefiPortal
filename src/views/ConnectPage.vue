@@ -62,6 +62,7 @@ const handleClickOutside = (event: MouseEvent) => {
   }
 }
 
+
 // Watch for mounted/unmounted lifecycle hooks to add/remove event listener
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
@@ -76,13 +77,14 @@ onBeforeUnmount(() => {
 
 <template>
   <div
+
     class="text-white w-full grow h-full flex flex-col place-items-center justify-center overflow-y-auto hide-scrollbar"
   >
     <div class="w-full flex flex-col place-items-center text-center max-w-[40rem] h-[80dvh]">
       <div
         class="w-full max-w-[24rem] border-[1px] shadow-[0px_3px_5px_#BE995E] border-[#BE995E] rounded-b-xl border-t-0 px-5 py-10 relative"
       >
-        <div class="text-[#F5A524] text-4xl font-bold mb-3">Enter your details</div>
+        <div class="text-[#F5A524] text-3xl lg:text-4xl font-bold mb-3">Enter your details</div>
 
         <form class="flex flex-col gap-8" action="">
           <div
@@ -141,6 +143,7 @@ onBeforeUnmount(() => {
 
               <!-- Dropdown list (appears when isOpen is true) -->
               <div
+
                 v-if="isOpen"
                 class="absolute z-50 bottom-10 left-0 w-full bg-white shadow-lg rounded-md mb-1 h-[20rem] overflow-y-auto hide-scrollbar"
               >
