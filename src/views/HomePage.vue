@@ -1,5 +1,5 @@
 <script setup lang="ts">
- import { computed, onBeforeUnmount, onMounted, ref } from 'vue';
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 
 const datas = [
   {
@@ -20,64 +20,59 @@ const datas = [
 ]
 
 const sliderDatas = [
-{
+  {
     header: 'Manage your NFT collection',
     image: '/images/teddy.png',
     body: 'Safely store your favourite NFTs, check floor prices, set NFT profile picture and more',
   },
-{
+  {
     header: 'Buy, store,Send, Swap',
     image: '/images/kite.png',
     body: 'Easily buy and manage all your tokens from the web',
   },
-{
+  {
     header: 'Easy to read activity history',
     image: '/images/history.png',
     body: 'View and understand you activity history without needing to be a blockchain expert',
   },
-{
+  {
     header: 'stake and earn',
     image: '/images/earn.png',
     body: 'Stake or liquid stake in any native token in one click',
   },
 ]
 
-const currentSlide = ref(0);
+const currentSlide = ref(0)
 
 // Handle previous slide
 const handlePrev = () => {
-  currentSlide.value = currentSlide.value === 0 ? sliderDatas.length - 1 : currentSlide.value - 1;
-};
-
-
+  currentSlide.value = currentSlide.value === 0 ? sliderDatas.length - 1 : currentSlide.value - 1
+}
 
 // Handle next slide
 const handleNext = () => {
-  currentSlide.value = (currentSlide.value + 1) % sliderDatas.length;
-};
+  currentSlide.value = (currentSlide.value + 1) % sliderDatas.length
+}
 
-const handleIndicatorChange = (index:number)=>{
+const handleIndicatorChange = (index: number) => {
   currentSlide.value = index
 }
 
-let intervalId:number;
+let intervalId: number
 
 onMounted(() => {
   intervalId = setInterval(() => {
-    currentSlide.value = (currentSlide.value + 1) % sliderDatas.length;
-  }, 3000);
-});
+    currentSlide.value = (currentSlide.value + 1) % sliderDatas.length
+  }, 3000)
+})
 
 onBeforeUnmount(() => {
-  clearInterval(intervalId);
-});
+  clearInterval(intervalId)
+})
 
 const visibleCards = computed(() => {
-  return sliderDatas.slice(
-    currentSlide.value,
-     currentSlide.value + 1
-  );
-});
+  return sliderDatas.slice(currentSlide.value, currentSlide.value + 1)
+})
 </script>
 <template>
   <div class="text-white w-full min-h-screen flex flex-col gap-10">
@@ -147,77 +142,69 @@ const visibleCards = computed(() => {
     </div>
 
     <div>
-    <div class="text-2xl font-normal text-[#A3A3A3] text-center">Powerful</div>
-    <div class="text-3xl font-bold text-center">
-      Block rocking <span class="text-[#66AAF9]">Power</span>
-    </div>
-    <div class="text-xl text-[#A3A3A3] text-center mt-[1rem] mb-[2rem]">
-      From Newcomer to Pro - Web3 modal got you covered. Powerful features are constantly added to assist you to succeed more.
-    </div>
-
-
-
-
-
-
-    <!-- Slider Container -->
-    <div class="w-full relative flex justify-center place-items-center">
-      <div class=" absolute top-1 right-3 text-white text-[0.75rem] font-normal ">{{ currentSlide+1 }} of {{ sliderDatas.length }}</div>
-
-      <div
-        @click="handlePrev"
-        class="absolute -left-3 cursor-pointer"
-      >
-      <button class="w-12 h-12 flex items-center justify-center transform rotate-180">
-  <div class="w-0 h-0 border-t-[0.75rem] border-b-[0.75rem] border-l-[0.75rem] border-transparent border-l-[#6D6D6E] hover:border-l-white"></div>
-</button>
+      <div class="text-2xl font-normal text-[#A3A3A3] text-center">Powerful</div>
+      <div class="text-3xl font-bold text-center">
+        Block rocking <span class="text-[#66AAF9]">Power</span>
+      </div>
+      <div class="text-xl text-[#A3A3A3] text-center mt-[1rem] mb-[2rem]">
+        From Newcomer to Pro - Web3 modal got you covered. Powerful features are constantly added to
+        assist you to succeed more.
       </div>
 
+      <!-- Slider Container -->
+      <div class="w-full relative flex justify-center place-items-center">
+        <div class="absolute top-1 right-3 text-white text-[0.75rem] font-normal">
+          {{ currentSlide + 1 }} of {{ sliderDatas.length }}
+        </div>
 
-      <!-- Cards Section -->
-      <div
-        v-for="(cardData, index) in visibleCards"
-        :key="index"
-        class="border-[1px] border-[#D4D4D4] rounded-lg min-w-[15rem] w-full p-5 flex flex-col gap-5 mb-5"
-      >
-        <div class="flex flex-col gap-2 place-items-center">
-          <img
-            class=" "
-            :src="cardData.image"
-            alt=""
-          />
+        <div @click="handlePrev" class="absolute -left-3 cursor-pointer">
+          <button class="w-12 h-12 flex items-center justify-center transform rotate-180">
+            <div
+              class="w-0 h-0 border-t-[0.75rem] border-b-[0.75rem] border-l-[0.75rem] border-transparent border-l-[#6D6D6E] hover:border-l-white"
+            ></div>
+          </button>
+        </div>
 
+        <!-- Cards Section -->
+        <div
+          v-for="(cardData, index) in visibleCards"
+          :key="index"
+          class="border-[1px] border-[#D4D4D4] rounded-lg min-w-[15rem] w-full p-5 flex flex-col gap-5 mb-5"
+        >
+          <div class="flex flex-col gap-2 place-items-center">
+            <img class=" " :src="cardData.image" alt="" />
 
-          <div class="flex flex-col gap-3">
-            <span class="text-xl font-bold text-center">
-              {{ cardData.header }}
-            </span>
-            <span class="text-[#A3A3A3] text-lg">{{ cardData.body }}</span>
+            <div class="flex flex-col gap-3">
+              <span class="text-xl font-bold text-center">
+                {{ cardData.header }}
+              </span>
+              <span class="text-[#A3A3A3] text-lg">{{ cardData.body }}</span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <span class="flex gap-2 place-items-center absolute bottom-[1.5rem]">
+        <span class="flex gap-2 place-items-center absolute bottom-[1.5rem]">
+          <button
+            v-for="(item, index) in sliderDatas"
+            :key="index"
+            @click="handleIndicatorChange(index)"
+            :class="
+              currentSlide === index
+                ? ' h-3 w-3 bg-white rounded-full m-[0_0.2rem]'
+                : ' w-3 h-3 rounded-full bg-gray-400'
+            "
+          />
+        </span>
 
-    <button
-      v-for="(item, index) in sliderDatas"
-      :key="index"
-      @click="handleIndicatorChange(index)"
-      :class="currentSlide === index ? ' h-3 w-3 bg-white rounded-full m-[0_0.2rem]' : ' w-3 h-3 rounded-full bg-gray-400'"
-
-    />
-  </span>
-
-      <!-- Next Button (conditional rendering) -->
-      <div
-        @click="handleNext"
-        class="absolute -right-3 cursor-pointer"
-      >
-      <button class="w-12 h-12 flex items-center justify-center">
-  <div class="w-0 h-0 border-t-[0.75rem] border-b-[0.75rem] border-l-[0.75rem] border-transparent border-l-[#6D6D6E] hover:border-l-white"></div>
-</button>
+        <!-- Next Button (conditional rendering) -->
+        <div @click="handleNext" class="absolute -right-3 cursor-pointer">
+          <button class="w-12 h-12 flex items-center justify-center">
+            <div
+              class="w-0 h-0 border-t-[0.75rem] border-b-[0.75rem] border-l-[0.75rem] border-transparent border-l-[#6D6D6E] hover:border-l-white"
+            ></div>
+          </button>
+        </div>
       </div>
     </div>
-  </div>
   </div>
 </template>

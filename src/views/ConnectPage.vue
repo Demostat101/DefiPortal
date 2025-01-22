@@ -62,7 +62,6 @@ const handleClickOutside = (event: MouseEvent) => {
   }
 }
 
-
 // Watch for mounted/unmounted lifecycle hooks to add/remove event listener
 onMounted(() => {
   document.addEventListener('click', handleClickOutside)
@@ -71,13 +70,10 @@ onMounted(() => {
 onBeforeUnmount(() => {
   document.removeEventListener('click', handleClickOutside)
 })
-
-
 </script>
 
 <template>
   <div
-
     class="text-white w-full grow h-full flex flex-col place-items-center justify-center overflow-y-auto hide-scrollbar"
   >
     <div class="w-full flex flex-col place-items-center text-center max-w-[40rem] h-[80dvh]">
@@ -117,9 +113,7 @@ onBeforeUnmount(() => {
             />
           </div>
           <div
-
             class="w-full flex flex-col gap-1 text-left border-r-0 border-l-0 transition duration-700 border-t-0 h-14 border-b-[2px] border-b-white"
-
           >
             <label class="text-[#454a4d] text-sm" for="wallet">Select Wallet</label>
 
@@ -143,7 +137,6 @@ onBeforeUnmount(() => {
 
               <!-- Dropdown list (appears when isOpen is true) -->
               <div
-
                 v-if="isOpen"
                 class="absolute z-50 bottom-10 left-0 w-full bg-white shadow-lg rounded-md mb-1 h-[20rem] overflow-y-auto hide-scrollbar"
               >
