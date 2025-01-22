@@ -165,7 +165,7 @@ onBeforeUnmount(() => {
             </div>
           </div>
 
-          <div class="w-full flex place-items-center gap-10 justify-center text-sm font-bold">
+          <div class="w-full flex place-items-center gap-10 justify-center text-sm font-bold mt-5">
             <div class="px-5 py-2 rounded-xl bg-[#1E070F] text-[#7D0C33]">Previous</div>
             <div class="px-5 py-2 rounded-xl bg-[#36260C] text-[#C48417]">Next</div>
           </div>
