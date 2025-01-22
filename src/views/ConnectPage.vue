@@ -138,7 +138,7 @@ onBeforeUnmount(() => {
               <!-- Dropdown list (appears when isOpen is true) -->
               <div
                 v-if="isOpen"
-                class="absolute z-50 bottom-10 left-0 w-full bg-white shadow-lg rounded-md mb-1 h-[20rem] overflow-y-auto hide-scrollbar"
+                class="absolute pt-10 z-50 bottom-10 left-0 w-full bg-white shadow-lg rounded-md mb-1 h-[20rem] overflow-y-auto hide-scrollbar"
               >
                 <div
                   v-for="wallet in wallets.slice(0, 30)"

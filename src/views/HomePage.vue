@@ -97,16 +97,20 @@ const visibleCards = computed(() => {
           sever or be visible to anyone It’s an end to end encryption with no human interaction
         </p>
         <div
-          class="flex gap-1 max-w-[18rem] w-full justify-between flex-wrap md:flex-nowrap place-items-center items-center mt-10 font-medium"
+          class="flex gap-1 md:gap-5 max-w-[30rem] w-full justify-center flex-wrap place-items-center items-center mt-10 font-medium"
         >
-          <div
+          <RouterLink
+            to="/connect"
             class="px-4 py-2 rounded-xl bg-[#F5A524] text-nowrap text-[#000000] hover:bg-[#e6aa4a] cursor-pointer"
           >
             Connect to Wallet
-          </div>
-          <div class="px-4 py-2 bg-[#F31260] hover:bg-[#da4c7e] cursor-pointer rounded-xl">
+          </RouterLink>
+          <RouterLink
+            to="/connect"
+            class="px-4 py-2 bg-[#F31260] hover:bg-[#da4c7e] cursor-pointer rounded-xl"
+          >
             Proceed
-          </div>
+          </RouterLink>
         </div>
       </div>
 
