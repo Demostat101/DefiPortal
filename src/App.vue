@@ -2,34 +2,13 @@
 import { RouterView } from 'vue-router'
 import TopBar from './views/TopBar.vue'
 import FooterPage from './views/FooterPage.vue'
-// import { onMounted } from 'vue'
 
-// const initializeGoogleTranslate = () => {
-//   new google.translate.TranslateElement(
-//     {
-//       pageLanguage: 'en', // Default language
-//       includedLanguages: 'en,es,fr,de,it', // Languages supported
-//       layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-//     },
-//     'google_translate_element'
-//   )
-// }
-
-// onMounted(() => {
-//   const script = document.createElement('script')
-//   script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
-//   script.async = true
-//   document.body.appendChild(script)
-
-//   // Initialize Google Translate
-//   window.googleTranslateElementInit = initializeGoogleTranslate
-// })
 </script>
 
 <template>
   <div class="flex flex-col h-screen bg-black relative overflow-y-auto">
     <TopBar />
-    <!-- <div id="google_translate_element" style="width: 15rem; height: 70px;"></div> -->
+
     <main class="p-8 grow">
       <RouterView />
     </main>
