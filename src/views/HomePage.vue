@@ -106,7 +106,7 @@ const visibleCards = computed(() => {
             Connect to Wallet
           </RouterLink>
           <RouterLink
-            to="/connect"
+            to="/services"
             class="px-4 py-2 bg-[#F31260] hover:bg-[#da4c7e] cursor-pointer rounded-xl"
           >
             Proceed
