@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { onMounted, ref, watch, onBeforeUnmount } from 'vue'
+import { defineProps } from 'vue'
+
 const isOpen = ref(false)
 
 // Define types for wallet data structure
@@ -10,11 +12,19 @@ interface Wallet {
   Id: string
 }
 
+const props = defineProps({
+  wallets: {
+    type: Array as () => Wallet[],
+    required: true
+  }
+})
+
 const selectWallet = (selectedWallet: { CoinName: string; ImageUrl: string }) => {
   wallet.value = selectedWallet.CoinName
   walletImage.value = selectedWallet.ImageUrl
   isOpen.value = false
 }
+
 // Declare refs with specific types
 const fullname = ref<string>('') // Full name as a string
 const fullNameFocus = ref<boolean>(false) // Focus state for full name input
@@ -25,35 +35,25 @@ const wallet = ref<string>('') // Selected wallet symbol as a string
 const walletImage = ref('')
 
 // Ref to store list of wallets
-const wallets = ref<Wallet[]>([]) // List of wallet data fetched from API
+const activeIndex = ref<number>(0) // Keeps track of the active index in the wallet list
 
-// Fetch wallets data from API on component mount
-onMounted(async () => {
-  try {
-    const response = await fetch('https://min-api.cryptocompare.com/data/all/coinlist')
-    const data = await response.json()
-
-    // Type the data response and map it to match the Wallet interface
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    wallets.value = Object.values(data.Data).map((walletData: any) => ({
-      CoinName: walletData?.CoinName ?? '',
-      Symbol: walletData?.Symbol ?? '',
-      ImageUrl: `https://www.cryptocompare.com${walletData?.ImageUrl ?? ''}`,
-      Id: walletData?.Id ?? '',
-    }))
-  } catch (error) {
-    console.error('Error fetching wallet data:', error)
-  }
-})
+// Ref to store the wallet list container for scrolling
+const containerRef = ref<HTMLElement | null>(null)
 
 // Watch for changes in wallets and log whenever it updates
-watch(wallets, (newWallets) => {
+watch(props.wallets, (newWallets) => {
   console.log('Updated wallets:', newWallets[0]?.ImageUrl)
 })
+
 const toggleDropdown = () => {
   walletFocus.value = !walletFocus.value
   isOpen.value = !isOpen.value
+  if (isOpen.value) {
+    // Reset active index when the dropdown is opened
+    activeIndex.value = 0
+  }
 }
+
 const handleClickOutside = (event: MouseEvent) => {
   const dropdown = document.querySelector('.relative') as HTMLElement
   if (dropdown && !dropdown.contains(event.target as Node)) {
@@ -62,24 +62,43 @@ const handleClickOutside = (event: MouseEvent) => {
   }
 }
 
+
+
+// Handle keyboard navigation (ArrowUp, ArrowDown, Enter)
+const handleKeydown = (event: KeyboardEvent) => {
+  if (isOpen.value) {
+    if (event.key === 'ArrowDown') {
+      if (activeIndex.value < props.wallets.length - 1) {
+        activeIndex.value++
+      }
+
+    } else if (event.key === 'ArrowUp') {
+      if (activeIndex.value > 0) {
+        activeIndex.value--
+      }
+
+    } else if (event.key === 'Enter' && activeIndex.value >= 0) {
+      selectWallet(props.wallets[activeIndex.value])
+    }
+  }
+}
+
 // Watch for mounted/unmounted lifecycle hooks to add/remove event listener
 onMounted(() => {
+  document.addEventListener('keydown', handleKeydown)
   document.addEventListener('click', handleClickOutside)
 })
 
 onBeforeUnmount(() => {
+  document.removeEventListener('keydown', handleKeydown)
   document.removeEventListener('click', handleClickOutside)
 })
 </script>
 
 <template>
-  <div
-    class="text-white w-full grow h-full flex flex-col place-items-center justify-center overflow-y-auto hide-scrollbar"
-  >
-    <div class="w-full flex flex-col place-items-center text-center max-w-[40rem] h-[80dvh]">
-      <div
-        class="w-full max-w-[24rem] border-[1px] shadow-[0px_3px_5px_#BE995E] border-[#BE995E] rounded-b-xl border-t-0 px-5 py-10 relative"
-      >
+  <div class="text-white w-full grow h-full flex flex-col place-items-center justify-center ">
+    <div class="w-full flex flex-col place-items-center text-center max-w-[40rem]">
+      <div class="w-full max-w-[24rem] border-[1px] shadow-[0px_3px_5px_#BE995E] border-[#BE995E] rounded-b-xl border-t-0 px-5 py-10 relative">
         <div class="text-[#F5A524] text-3xl lg:text-4xl font-bold mb-3">Enter your details</div>
 
         <form class="flex flex-col gap-8" action="">
@@ -98,6 +117,7 @@ onBeforeUnmount(() => {
               placeholder="Enter your name"
             />
           </div>
+
           <div
             class="w-full flex flex-col gap-1 text-left border-r-0 border-l-0 transition duration-700 border-t-0 h-14 border-b-[2px] border-b-white"
             :class="{ 'border-b-yellow-500': emailFocus, 'border-b-white': !emailFocus }"
@@ -112,6 +132,7 @@ onBeforeUnmount(() => {
               placeholder="Enter your email address"
             />
           </div>
+
           <div
             class="w-full flex flex-col gap-1 text-left border-r-0 border-l-0 transition duration-700 border-t-0 h-14 border-b-[2px] border-b-white"
           >
@@ -138,13 +159,20 @@ onBeforeUnmount(() => {
               <!-- Dropdown list (appears when isOpen is true) -->
               <div
                 v-if="isOpen"
-                class="absolute pt-10 z-50 bottom-10 left-0 w-full bg-white shadow-lg rounded-md mb-1 h-[20rem] overflow-y-auto hide-scrollbar"
+                ref="containerRef"
+                class="absolute data-[top-scroll=true] z-50 bottom-10 left-0 w-full bg-white shadow-lg rounded-md mb-1 max-h-64 overflow-y-scroll scroll-smooth hide-scrollbar"
+                
               >
                 <div
-                  v-for="wallet in wallets.slice(0, 30)"
+                tabindex="0"
+
+                  v-for="(wallet, index) in props.wallets"
                   :key="wallet.Id"
                   @click="selectWallet(wallet)"
-                  class="flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200"
+                  :class="{
+                    'flex items-center px-4 py-2 cursor-pointer hover:bg-gray-200': true,
+                    'bg-gray-200': activeIndex === index
+                  }"
                 >
                   <!-- Wallet image with border-radius -->
                   <img
@@ -172,3 +200,4 @@ onBeforeUnmount(() => {
     </div>
   </div>
 </template>
+
