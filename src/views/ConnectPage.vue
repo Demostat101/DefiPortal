@@ -3,359 +3,446 @@ import { onMounted, ref, onBeforeUnmount, nextTick } from 'vue'
 
 const walletData = [
   {
+    id: 1,
     image: '/images/wallet1.png',
     name: 'Trustee wallet',
   },
   {
+    id: 2,
     image: '/images/wallet2.jpg',
     name: 'Zano wallet',
   },
   {
+    id: 3,
     image: '/images/wallet3.png',
     name: 'Klever wallet',
   },
   {
+    id: 4,
     image: '/images/wallet4.jpg',
     name: 'Defichain wallet',
   },
   {
+    id: 5,
     image: '/images/wallet6.jpg',
     name: 'Dfx wallet',
   },
   {
+    id: 6,
     image: '/images/wallet7.png',
     name: 'Pontem wallet',
   },
   {
+    id: 7,
     image: '/images/wallet8.png',
     name: 'Aptos wallet',
   },
   {
+    id: 8,
     image: '/images/wallet9.jpg',
     name: 'Vite wallet',
   },
   {
+    id: 9,
     image: '/images/wooden-f-1346174_640.png',
     name: 'Flare wallet',
   },
   {
+    id: 10,
     image: '/images/wallet11.png',
     name: 'Hydra wallet',
   },
   {
+    id: 11,
     image: '/images/wallet12.png',
     name: 'Auro wallet',
   },
   {
+    id: 12,
     image: '/images/wallet13.jpg',
     name: 'Sub wallet',
   },
   {
+    id: 13,
     image: '/images/wallet14.png',
     name: 'Clover wallet',
   },
   {
+    id: 14,
     image: '/images/wallet15.jpg',
     name: 'Blixt wallet',
   },
   {
+    id: 15,
     image: '/images/wallet16.jpg',
     name: 'Sparrow wallet',
   },
   {
+    id: 16,
     image: '/images/wallet17.png',
     name: 'BlackFort wallet',
   },
   {
+    id: 17,
     image: '/images/wallet18.png',
     name: 'MetaMask wallet',
   },
   {
+    id: 18,
     image: '/images/wallet19.jpg',
     name: 'Trust wallet',
   },
   {
+    id: 19,
     image: '/images/wallet20.png',
     name: 'Coinbase wallet',
   },
   {
+    id: 20,
     image: '/images/wallet21.webp',
     name: 'Exodus',
   },
   {
+    id: 21,
     image: '/images/wallet22.png',
     name: 'Mycelium',
   },
   {
+    id: 22,
     image: '/images/wallet23.png',
     name: 'Ledger Nano S',
   },
   {
+    id: 23,
     image: '/images/wallet23.png',
     name: 'Ledger Nano X',
   },
   {
+    id: 24,
     image: '/images/wallet25.png',
     name: 'Trezor One',
   },
   {
+    id: 25,
     image: '/images/wallet25.png',
     name: 'Trezor Model T',
   },
   {
+    id: 26,
     image: '/images/wallet27.svg',
     name: 'Atomic wallet',
   },
   {
+    id: 27,
     image: '/images/wallet28.jpg',
     name: 'BRD wallet',
   },
   {
+    id: 28,
     image: '/images/wallet29.jpg',
     name: 'Jaxx Liberty',
   },
   {
+    id: 29,
     image: '/images/wallet30.jpg',
     name: 'Edge wallet',
   },
   {
+    id: 30,
     image: '/images/wallet31.png',
     name: 'Samourai wallet',
   },
   {
+    id: 31,
     image: '/images/wallet32.png',
     name: 'Wasabi wallet',
   },
   {
+    id: 32,
     image: '/images/wallet33.jpg',
     name: 'Guarda wallet',
   },
   {
+    id: 33,
     image: '/images/wallet34.png',
     name: 'Infinto wallet',
   },
   {
+    id: 34,
     image: '/images/wallet35.png',
     name: 'Zengo',
   },
   {
+    id: 35,
     image: '/images/wallet36.png',
     name: 'Ellipal',
   },
   {
+    id: 36,
     image: '/images/wallet37.png',
     name: 'KeepKey',
   },
   {
+    id: 37,
     image: '/images/wallet38.png',
     name: 'Bitcoin.com wallet',
   },
   {
+    id: 38,
     image: '/images/wallet39.png',
     name: 'Coins.ph',
   },
   {
+    id: 39,
     image: '/images/wallet40.png',
     name: 'Coinomi',
   },
   {
+    id: 40,
     image: '/images/wallet41.png',
     name: 'Blockchain wallet',
   },
   {
+    id: 41,
     image: '/images/wallet42.jpg',
     name: 'Bitpay wallet',
   },
   {
+    id: 42,
     image: '/images/wallet43.png',
     name: 'Green wallet',
   },
   {
+    id: 43,
     image: '/images/wallet44.png',
     name: 'Copay',
   },
   {
+    id: 44,
     image: '/images/wallet45.png',
     name: 'Amory',
   },
   {
+    id: 45,
     image: '/images/wallet46.png',
     name: 'Electrum',
   },
   {
+    id: 46,
     image: '/images/wallet47.png',
     name: 'Monero GUI wallet',
   },
   {
+    id: 47,
     image: '/images/wallet48.png',
     name: 'BitBox',
   },
   {
+    id: 48,
     image: '/images/wooden-n-1346197_640.png',
     name: 'Narkom wallet',
   },
   {
+    id: 49,
     image: '/images/wallet50.png',
     name: 'Eidoo wallet',
   },
   {
+    id: 50,
     image: '/images/wallet51.png',
     name: 'Horizon wallet',
   },
   {
+    id: 51,
     image: '/images/wallet52.png',
     name: 'Pillar wallet',
   },
   {
+    id: 52,
     image: '/images/wallet53.jpg',
     name: 'Kinesis wallet',
   },
   {
+    id: 53,
     image: '/images/wallet54.png',
     name: ' SatoWallet',
   },
   {
+    id: 54,
     image: '/images/wallet55.png',
     name: 'Safepal',
   },
   {
+    id: 55,
     image: '/images/wallet56.png',
     name: 'Token Pocket',
   },
   {
+    id: 56,
     image: '/images/wallet57.png',
     name: 'Nova wallet',
   },
   {
+    id: 57,
     image: '/images/wallet58.png',
     name: 'Wallet Connect',
   },
   {
+    id: 58,
     image: '/images/wallet59.png',
     name: 'OKX',
   },
   {
+    id: 59,
     image: '/images/wallet60.png',
     name: 'Binance',
   },
   {
+    id: 60,
     image: '/images/wallet62.png',
     name: 'HyperPay wallet',
   },
   {
+    id: 61,
     image: '/images/wallet63.png',
     name: 'Tronlink',
   },
   {
+    id: 62,
     image: '/images/wallet64.png',
     name: 'Clore wallet',
   },
   {
+    id: 63,
     image: '/images/wallet65.png',
     name: 'Klever wallet',
   },
   {
+    id: 64,
     image: '/images/wallet66.png',
     name: 'Coin98',
   },
   {
+    id: 65,
     image: '/images/wallet67.png',
     name: 'Kardianchain wallet',
   },
   {
+    id: 66,
     image: '/images/wallet68.png',
     name: 'Blue wallet',
   },
   {
+    id: 67,
     image: '/images/wallet69.png',
     name: 'Satoshi wallet',
   },
   {
+    id: 68,
     image: '/images/wallet70.png',
     name: 'Phoenix wallet',
   },
   {
+    id: 69,
     image: '/images/wallet71.png',
     name: 'Bridge wallet',
   },
   {
+    id: 70,
     image: '/images/wallet72.png',
     name: 'Sora wallet',
   },
   {
+    id: 71,
     image: '/images/wallet73.png',
     name: 'Bravos wallet',
   },
   {
+    id: 72,
     image: '/images/wallet74.png',
     name: 'Leap wallet',
   },
   {
+    id: 73,
     image: '/images/wallet75.jpg',
     name: 'Web wallet',
   },
   {
+    id: 74,
     image: '/images/wallet76.png',
     name: 'Via wallet',
   },
   {
+    id: 75,
     image: '/images/wallet77.png',
     name: 'Auro wallet',
   },
   {
+    id: 76,
     image: '/images/wallet78.png',
     name: 'Bitfrost wallet',
   },
   {
+    id: 77,
     image: '/images/wallet79.png',
     name: 'Defichain wallet',
   },
   {
+    id: 78,
     image: '/images/wallet80.png',
     name: 'Cosmostation wallet',
   },
   {
+    id: 79,
     image: '/images/wallet81.png',
     name: 'Plena wallet',
   },
   {
+    id: 80,
     image: '/images/wallet82.png',
     name: 'Walken wallet',
   },
   {
+    id: 81,
     image: '/images/wallet83.png',
     name: 'Maths wallet',
   },
   {
+    id: 82,
     image: '/images/wallet84.png',
     name: 'Keplr wallet',
   },
   {
+    id: 83,
     image: '/images/wallet86.png',
     name: 'Helium wallet',
   },
   {
+    id: 84,
     image: '/images/wallet85.png',
     name: 'Fearless wallet',
   },
   {
+    id: 85,
     image: '/images/wallet87.png',
     name: 'CWallet',
   },
   {
+    id: 86,
     image: '/images/wallet88.jpg',
     name: 'Haqq wallet',
   },
-]
+];
+
 
 const isOpen = ref(false)
 const switchPage = ref('page1')
 
-const selectWallet = (selectedWallet: { name: string; image: string }) => {
+const selectWallet = (selectedWallet: { name: string; image: string; id:number }) => {
   wallet.value = selectedWallet.name
   walletImage.value = selectedWallet.image
   isOpen.value = false
-  getSelected.value = selectedWallet.name
+  getSelected.value = selectedWallet.id
 }
 
 // Declare refs with specific types
@@ -368,7 +455,7 @@ const email = ref<string>('') // Email as a string
 const walletFocus = ref<boolean>(false) // Focus state for wallet select
 const wallet = ref<string>('') // Selected wallet symbol as a string
 const walletImage = ref('')
-const getSelected = ref('')
+const getSelected = ref<string | number>('')
 
 // Ref to store list of wallets
 const activeIndex = ref<number>(0) // Keeps track of the active index in the wallet list
@@ -512,7 +599,7 @@ onBeforeUnmount(() => {
                     :class="{
                       'flex justify-between items-center px-4 py-2 focus:outline-none cursor-pointer hover:bg-gray-200': true,
                       'bg-gray-200 wallet-item focus:outline-none':
-                        getSelected === wallet.name || activeIndex === index,
+                        getSelected === wallet.id || activeIndex === index,
                     }"
                   >
                     <!-- Wallet image with border-radius -->
@@ -525,7 +612,7 @@ onBeforeUnmount(() => {
                       <span class="text-black">{{ wallet.name }}</span>
                     </div>
                     <img
-                      v-if="getSelected === wallet.name"
+                      v-if="getSelected === wallet.id"
                       src="/images/ok-2307342_640.png"
                       alt="Wallet Image"
                       class="w-5"
